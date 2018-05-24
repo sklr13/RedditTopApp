@@ -1,0 +1,55 @@
+static String getVersionName() {
+    return "1.0.0"
+}
+
+static int getVersionCode() {
+    String[] parts = getVersionName().split("\\.")
+    int v1 = Integer.parseInt(parts[0])
+    int v2 = Integer.parseInt(parts[1])
+    int v3 = Integer.parseInt(parts[2])
+    return v1 * 1000_000 + v2 * 1000 + v3
+}
+
+ext {
+    versions = [
+            application: [
+                    versionName: getVersionName(),
+                    versionCode: getVersionCode()
+            ],
+            android    : [
+                    compileSdk: 27,
+                    buildTools: "27.0.3",
+                    minSdk    : 21,
+                    targetSdk : 27
+            ],
+            navigation : [
+                    cicerone: "3.0.0"
+            ],
+            ui         : [
+                    butterknife: "8.8.1",
+                    glide      : "3.7.0"
+            ],
+            support    : [
+                    arch          : "1.0.0",
+                    supportLibrary: "27.1.1",
+                    constraint    : "1.1.0",
+                    playServices  : "11.8.0",
+                    firebase      : "11.8.0",
+            ],
+            frameworks : [
+                    dagger       : "2.15",
+                    rxjava       : "2.1.3",
+                    rxAdapter    : "2.4.0",
+                    rxandroid    : "2.0.2",
+                    rxpermissions: "0.9.5@aar",
+                    retrofit     : "2.3.0",
+                    gsonConverter: "2.2.0",
+                    logIntercept : "3.9.1"
+            ],
+            tests      : [
+                    junit      : "4.12",
+                    mockito    : "2.13.0",
+                    robolectric: "3.6.1",
+            ]
+    ]
+}

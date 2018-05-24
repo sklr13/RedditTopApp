@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Wide"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/thumb_imageview"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <LinearLayout
+        style="@style/Wide"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/Wide"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Wrap"
+                android:text="@string/title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/title_textview"
+                style="@style/Wide"
+                android:lines="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Wide"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Wrap"
+                android:text="@string/author"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/author_textview"
+                style="@style/Wide" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Wide"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Wrap"
+                android:text="@string/created"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/created_textview"
+                style="@style/Wide" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Wide"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Wrap"
+                android:text="@string/comments"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/comments_textview"
+                style="@style/Wide" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

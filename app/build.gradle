@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+apply from: "../versions.gradle"
+
+android {
+    compileSdkVersion versions.android.compileSdk
+    buildToolsVersion versions.android.buildTools
+    defaultConfig {
+        applicationId "rddt.com.redditapp"
+        minSdkVersion versions.android.minSdk
+        targetSdkVersion versions.android.targetSdk
+        versionName versions.application.versionName + " (" + getVersion() + ")"
+        versionCode versions.application.versionCode
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    flavorDimensions "default"
+
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+        release {
+            //todo change to real key
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('../keystore/debug.keystore')
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        demo {
+            versionNameSuffix "-demo"
+            buildConfigField "String", "BASE_URL", wrapStr("https://www.reddit.com/r/redditdev/")
+        }
+        dev {
+            versionNameSuffix "-dev"
+            buildConfigField "String", "BASE_URL", wrapStr("https://prod/")
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+static String wrapStr(String str) {
+    return '"' + str + '"'
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:$versions.support.supportLibrary"
+    implementation "com.android.support.constraint:constraint-layout:$versions.support.constraint"
+    implementation "com.android.support:design:$versions.support.supportLibrary"
+
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.frameworks.rxandroid"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.frameworks.rxjava"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.frameworks.rxAdapter"
+
+    implementation "com.jakewharton:butterknife:$versions.ui.butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.ui.butterknife"
+    implementation "com.github.bumptech.glide:glide:$versions.ui.glide"
+
+    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$versions.frameworks.rxpermissions"
+
+    implementation "com.google.dagger:dagger:$versions.frameworks.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.frameworks.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.frameworks.dagger"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$versions.frameworks.dagger"
+
+    implementation "ru.terrakok.cicerone:cicerone:$versions.navigation.cicerone"
+
+    implementation "com.squareup.retrofit2:retrofit:$versions.frameworks.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.frameworks.gsonConverter"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.frameworks.logIntercept"
+
+    testImplementation "junit:junit:$versions.tests.junit"
+    testImplementation "org.mockito:mockito-core:$versions.tests.mockito"
+    testImplementation "org.robolectric:robolectric:$versions.tests.robolectric"
+}

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RedditApp</string>
+    <string name="author">author:</string>
+    <string name="title">title:</string>
+    <string name="created">created:</string>
+    <string name="comments">comments:</string>
+</resources>
